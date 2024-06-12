@@ -13,7 +13,7 @@ class MembersControllerTest extends APITestCase
    
     public function test_fake_data_api_call(): void
     {
-        $response = $this->get('/api/members/fake');
+        $response = $this->get('/members/fake');
 
         // assert that the response contains specific keys
         $response->assertJsonStructure([
@@ -39,14 +39,14 @@ class MembersControllerTest extends APITestCase
 
     public function test_index(): void
     {
-        $response = $this->get('/api/members');
+        $response = $this->get('/members');
 
         $response->assertStatus(200);
     }
 
     public function test_show_member_no_exists(): void
     {
-        $response = $this->get('/api/members/600');
+        $response = $this->get('/members/600');
 
         $response->assertStatus(404);
     }
@@ -58,7 +58,7 @@ class MembersControllerTest extends APITestCase
 
         // get memberid
         $memberId = $member->user_id;
-        $response = $this->get('/api/members/' . $memberId);
+        $response = $this->get('/members/' . $memberId);
 
         $response->assertStatus(200);
     }

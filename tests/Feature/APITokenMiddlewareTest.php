@@ -15,7 +15,7 @@ class APITokenMiddlewareTest extends APITestCase
      */
     public function test_endpoint_without_correct_token(): void
     {
-        $request = Request::create('/api/members/fake', 'GET');
+        $request = Request::create('/members/fake', 'GET');
 
         $middleware = new EnsureAPIToken;
 
@@ -26,7 +26,7 @@ class APITokenMiddlewareTest extends APITestCase
 
     public function test_endpoint_with_correct_token(): void
     {
-        $request = Request::create('/api/members/fake', 'GET');
+        $request = Request::create('/members/fake', 'GET');
         $request->headers->set('Authorization', 'Bearer ' . config('app.api_token'));
 
         $middleware = new EnsureAPIToken;
