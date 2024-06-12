@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->string('twitch_user_id')->unique();
-            $table->string('twitch_username')->unique();
+            $table->string('user_id')->unique();
+            $table->string('display_name')->unique();
+            $table->string('avatar');
+            $table->timestamp('followed_at');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
