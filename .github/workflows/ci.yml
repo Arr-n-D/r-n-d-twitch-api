@@ -33,3 +33,12 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan test --stop-on-failure
+
+  # deploy to staging
+  deploy-dv:
+    runs-on: ubuntu-latest
+    needs: laravel-tests
+    steps:
+    - name: Deploy to dv
+    # access secret from github secrets
+      run: curl -X GET https://forge.laravel.com/servers/797822/sites/2378499/deploy/http?token=${{ secrets.FORGE_TOKEN }
