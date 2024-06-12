@@ -73,7 +73,8 @@ class MembersController extends Controller
      */
     public function show(Member $member)
     {
-        //
+        // find the member by id
+        return $member;
     }
 
     

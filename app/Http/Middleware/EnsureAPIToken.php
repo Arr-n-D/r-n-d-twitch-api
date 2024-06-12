@@ -18,6 +18,7 @@ class EnsureAPIToken
         if ($request->bearerToken() !== config('app.api_token')) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
+        
         return $next($request);
     }
 }

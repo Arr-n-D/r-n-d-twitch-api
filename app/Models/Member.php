@@ -17,4 +17,8 @@ class Member extends Model
         'followed_at'
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'user_id';
+    }
 }
