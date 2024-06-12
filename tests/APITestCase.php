@@ -10,6 +10,6 @@ abstract class APITestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->withHeader('Authorization', 'Bearer ' . "f");
+        $this->withHeader('Authorization', 'Bearer ' . config('app.api_token'));
     }
 }
