@@ -9,13 +9,15 @@ RUN apk update && apk add git \
     libzip-dev \
     nginx \
     postgresql-dev \
-    libpng-dev
+    libpng-dev \
+    # sqlite
+    sqlite-dev
 
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # install php extensions
-RUN docker-php-ext-install pdo pdo_pgsql opcache pcntl gd bcmath posix zip
+RUN docker-php-ext-install pdo pdo_pgsql opcache pcntl gd bcmath posix zip pdo_sqlite
 
 # edit nginx.conf with sed
 RUN sed -i 's/user nginx;/user www www;/' /etc/nginx/nginx.conf
@@ -30,7 +32,6 @@ RUN addgroup -g 1000 -S www && \
 COPY --chown=www:www . /var/www/html
 
 USER www
-EXPOSE 9000
 
 RUN composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist && composer dump-autoload
 
