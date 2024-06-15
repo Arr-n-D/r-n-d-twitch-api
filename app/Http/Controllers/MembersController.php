@@ -6,6 +6,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Testing\Fakes\Fake;
+use Illuminate\Support\Facades\Log;
 
 class MembersController extends Controller
 {
@@ -21,6 +22,7 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info('Store method called', $request->all());
         $user = Member::create([
             'user_id' => $request->user_id,
             'display_name' => $request->displayName,
@@ -28,6 +30,7 @@ class MembersController extends Controller
             // date now in Montreal timezone EST
             'followed_at' => Date::now('America/Montreal')
         ]);
+
 
         // return response()->json($user, 201);
         return response()->json($user, 201)->header('Cache-Control', 'no-cache, no-store, must-revalidate');
