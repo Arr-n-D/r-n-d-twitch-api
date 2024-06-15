@@ -29,43 +29,8 @@ class MembersController extends Controller
             'followed_at' => Date::now('America/Montreal')
         ]);
 
-        return response()->json($user, 201);
-    }
-
-    public function getFakeData() {
-        $fake = fake();
-        // create fake data to return to the user too, for the application
-        $fakeData = [
-            "last_name" => $fake->lastName(),
-            "address" => $fake->address(),
-            "phone" => $fake->phoneNumber(),
-            "email" => $fake->email(),
-            // Random bool value
-            "license" => $fake->boolean(),
-            // fake license class
-            "license_class" => $fake->randomElement(['A', 'B', 'C', 'D', 'E', 'F']),
-            // fake boolean
-            "license_suspended" => $fake->boolean(),
-            "revoking_reason" => "I'm a terrible driver, really",
-            "current_employer" => $fake->company(),
-            "employer_name" => $fake->name(),
-            "employer_address" => $fake->address(),
-            "employer_postcode" => $fake->postcode(),
-            "employer_email" => $fake->email(),
-            "employer_phone" => $fake->phoneNumber(),
-            "references" => [
-                $fake->name(),
-                $fake->name(),
-                $fake->name(),
-                $fake->name(),
-                $fake->name(),
-                $fake->name(),
-                "R&D"
-            ]
-            
-        ];
-        
-        return  response()->json($fakeData, 200);
+        // return response()->json($user, 201);
+        return response()->json($user, 201)->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     /**

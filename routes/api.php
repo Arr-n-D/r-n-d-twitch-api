@@ -9,7 +9,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
-// Route resource for members
-Route::get('members/fake', [MembersController::class, 'getFakeData'])->middleware(EnsureAPIToken::class);
 Route::resource('members', MembersController::class)->middleware(EnsureAPIToken::class);
