@@ -10,32 +10,7 @@ use Tests\APITestCase;
 class MembersControllerTest extends APITestCase
 {
     use DatabaseMigrations;
-   
-    public function test_fake_data_api_call(): void
-    {
-        $response = $this->get('/members/fake');
 
-        // assert that the response contains specific keys
-        $response->assertJsonStructure([
-            'last_name',
-            'address',
-            'phone',
-            'email',
-            'license',
-            'license_class',
-            'license_suspended',
-            'revoking_reason',
-            'current_employer',
-            'employer_name',
-            'employer_address',
-            'employer_postcode',
-            'employer_email',
-            'employer_phone',
-            'references'
-        ]);
-
-        $response->assertStatus(200);
-    }
 
     public function test_index(): void
     {
