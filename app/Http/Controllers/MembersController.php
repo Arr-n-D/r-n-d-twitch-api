@@ -21,11 +21,13 @@ class MembersController extends Controller
      */
     public function store(Request $request)
     {
+        // followed_at is a UTC formatted timestamp as a string, so convert it to a Carbon instance
+        $date = Date::parse($request->followed_at);
         $user = Member::create([
             'user_id' => $request->user_id,
             'display_name' => $request->displayName,
             'avatar' => $request->avatar,
-            'followed_at' => $request->followed_at
+            'followed_at' => $date
         ]);
 
         return response()->json($user, 201);
