@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unique();
             $table->string('display_name')->unique();
             $table->string('avatar');
-            $table->timestamp('followed_at');
+            $table->timestampTz('followed_at');
             $table->timestamps();
             $table->softDeletes();
         });
