@@ -25,8 +25,7 @@ class MembersController extends Controller
             'user_id' => $request->user_id,
             'display_name' => $request->displayName,
             'avatar' => $request->avatar,
-            // date now in Montreal timezone EST
-            'followed_at' => Date::now('America/Montreal')
+            'followed_at' => $request->followed_at
         ]);
 
         return response()->json($user, 201);
