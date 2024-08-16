@@ -124,5 +124,7 @@ return [
     ],
 
     'api_token' => env('API_TOKEN'),
+    'twitch_client_id' => env('TWITCH_CLIENT_ID'),
+    'twitch_api_token' => env('TWITCH_API_TOKEN'),
 
 ];
